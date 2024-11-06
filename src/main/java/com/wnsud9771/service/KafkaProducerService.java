@@ -14,6 +14,7 @@ import java.util.concurrent.CompletableFuture;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+//로그 메시지를 Kafka로 전송하는 메소드
 public class KafkaProducerService {
     private final KafkaTemplate<Integer, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
@@ -53,21 +54,21 @@ public class KafkaProducerService {
                    .substring(0, Math.min(title.length(), 249));
     }
 
-    @PostConstruct
-    public void init() {
-        try {
-            LogDTO testLog1 = new LogDTO();
-            testLog1.setTitle("사용자 A의 전자제품 조회 로그");
-            testLog1.setContents("{\"timestamp\":\"2024-10-31T14:23:45+09:00\"," +
-                                "\"visitor_id\":\"2cff4a12e87f499b\"," +
-                                "\"url\":\"https://example.com/products/category/electronics\"," +
-                                "\"event_action\":\"View\"," +
-                                "\"user_id\":\"user_123456\"}");
-
-            sendLogMessage(testLog1);
-            log.info("Test message sent successfully!");
-        } catch (Exception e) {
-            log.error("Error sending test message: ", e);
-        }
-    }
+//    @PostConstruct
+//    public void init() {
+//        try {
+//            LogDTO testLog1 = new LogDTO();
+//            testLog1.setTitle("사용자 A의 전자제품 조회 로그");
+//            testLog1.setContents("{\"timestamp\":\"2024-10-31T14:23:45+09:00\"," +
+//                                "\"visitor_id\":\"2cff4a12e87f499b\"," +
+//                                "\"url\":\"https://example.com/products/category/electronics\"," +
+//                                "\"event_action\":\"View\"," +
+//                                "\"user_id\":\"user_123456\"}");
+//
+//            sendLogMessage(testLog1);
+//            log.info("Test message sent successfully!");
+//        } catch (Exception e) {
+//            log.error("Error sending test message: ", e);
+//        }
+//    }
 }

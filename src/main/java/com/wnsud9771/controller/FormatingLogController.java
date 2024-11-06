@@ -19,15 +19,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/logs")
+@RequestMapping("/logs") // '/logs' 경로로 들어오는 요청을 처리
 @RequiredArgsConstructor
 @Slf4j
 public class FormatingLogController {
     private final KafkaProducerService kafkaProducerService;
 
-    @PostMapping("/formating")
+    @PostMapping("/formating") // /logs/formating 요청 처리
     public ResponseEntity<String> processFormattedLog(@RequestBody LogDTO logDTO) {
         try {
+        	// 받은 로그의 제목
             log.info("Received formatted log - Title: {}", logDTO.getTitle());
             kafkaProducerService.sendLogMessage(logDTO);
             return ResponseEntity.ok("Log processed successfully");

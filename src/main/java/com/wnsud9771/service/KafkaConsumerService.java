@@ -12,15 +12,17 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @RequiredArgsConstructor
 public class KafkaConsumerService {
+	// 모든 토픽(".*)의 메시지를 소비하는 리스너
 	@KafkaListener(topicPattern = ".*", groupId = "consumer_group02")  // 모든 토픽 리스닝
     public void consume(String message) {
         try {
             log.info("Consumed Message: {}", message);
-            // 여기서는 단순히 메시지를 로깅만 합니다.
+         // 현재는 메시지 로깅만 수행
         } catch (Exception e) {
             log.error("Error processing message: ", e);
         }
     }
+	/*  REST API로 메시지 전달하는 기능 */
 //    private final RestTemplate restTemplate;
 //    private static final String RECEIVE_LOG_URL = "http://localhost:8084/logs/receive";
 //
