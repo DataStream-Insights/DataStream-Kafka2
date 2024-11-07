@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class KafkaConsumerService {
 	// 모든 토픽(".*)의 메시지를 소비하는 리스너
-	@KafkaListener(topicPattern = ".*", groupId = "consumer_group02")  // 모든 토픽 리스닝
+	@KafkaListener(topicPattern = "format_test2", groupId = "consumer_group02")  // 모든 토픽 리스닝
     public void consume(String message) {
         try {
             log.info("Consumed Message: {}", message);

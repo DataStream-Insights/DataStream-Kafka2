@@ -29,7 +29,8 @@ public class FormatingLogController {
     public ResponseEntity<String> processFormattedLog(@RequestBody LogDTO logDTO) {
         try {
         	// 받은 로그의 제목
-            log.info("Received formatted log - Title: {}", logDTO.getTitle());
+            log.info("####################받아온 Title: {}", logDTO.getTitle());
+            log.info("@@@@@@@@@@@@@@@@@@@@@@@@@받아온 로그: {}", logDTO.getContents());
             kafkaProducerService.sendLogMessage(logDTO);
             return ResponseEntity.ok("Log processed successfully");
         } catch (Exception e) {

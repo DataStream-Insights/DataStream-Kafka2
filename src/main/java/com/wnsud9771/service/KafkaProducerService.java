@@ -29,7 +29,7 @@ public class KafkaProducerService {
             topicService.createTopicIfNotExists(topicName);
             
             // JSON 변환
-            String jsonMessage = objectMapper.writeValueAsString(logDTO);
+            String jsonMessage = objectMapper.writeValueAsString(logDTO.getContents());
             
             // Kafka로 전송
             CompletableFuture<SendResult<Integer, String>> future = kafkaTemplate.send(topicName, jsonMessage);
